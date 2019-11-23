@@ -20,7 +20,7 @@ export default (()=>{
   }
   
   document.addEventListener('gameStart',e=>{
-      
+       
     const cyl = document.createElement('a-cylinder');
     cyl.setAttribute('radius','0.6');
     cyl.setAttribute('height','3');
