@@ -50,6 +50,32 @@ export const controls = {
    sphere.object3D.position.set(pp.x,pp.y+4,pp.z);
    CS1.scene.appendChild(sphere);
  }
+  
+ CS1.ui.controls.addMagicPellet = e => {
+   const sphere = document.createElement('a-sphere');
+   sphere.setAttribute('color','purple');
+   sphere.setAttribute('radius','0.3');
+   sphere.setAttribute('collectible','affects:magicDial ; value:10'); 
+   sphere.setAttribute('grabbable','');
+   sphere.classList = 'magicpellet';
+   const pp = CS1.myPlayer.object3D.position;
+   sphere.object3D.position.set(pp.x,pp.y+4,pp.z);
+   CS1.scene.appendChild(sphere);
+ }
+ 
+ CS1.ui.controls.addESP8266 = e => {
+   const model = document.createElement('a-gltf-model');
+   model.setAttribute('src','https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?v=1557589195138');
+   model.setAttribute('grabbable','');
+   model.components.grabbable.postRelease = e => {
+      model.setAttribute('rotation','0 0 0');
+   }
+   model.setAttribute('scale','0.2 0.2 0.2');
+   model.classList = 'esp8266';
+   const pp = CS1.myPlayer.object3D.position;
+   model.object3D.position.set(pp.x,pp.y+4,pp.z);
+   CS1.scene.appendChild(model);
+ }
  
  
     
