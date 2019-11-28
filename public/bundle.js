@@ -128,6 +128,7 @@
             return;
           grabbablesData.forEach((d, index) => {
             let b = CS1.grabbables[d.name];
+            if(!b)return;
             if (CS1.debug) {
               console.log("Individual body data from server:");
               console.log(d);
@@ -172,13 +173,18 @@
                 entity.setAttribute("launchable", "");
                 console.log("detected launchable on remote late grabbable");
               }
+              if (key == "postRelease") {
+                entity.setAttribute('grabbable',`remote:true;postRelease:${value}`);
+                console.log("detected postRelease on remote late grabbable");
+              }
             }
           }
           CS1.scene.appendChild(entity);
         });
         
         CS1.socket.on("post-release", grabbableName=>{
-          CS1.grabbables[grabbableName].components.grabbable.postRelease();
+          if(typeof CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease]=='function')
+            CS1.callbacks[CS1.grabbables[grabbableName].components.grabbable.data.postRelease](grabbableName);
         });
         
       }
@@ -187,7 +193,8 @@
     AFRAME.registerComponent("grabbable", {
       schema: {
         origin: { type: "selector" },
-        remote: { default: false }
+        remote: { default: false },
+        postRelease: { default: '' }
       },
 
       init: function() {
@@ -210,6 +217,8 @@
 
         this.name = Object.keys(CS1.grabbables).length;
         CS1.grabbables[this.name] = self.el;
+        
+        
 
         if (CS1 && CS1.game && CS1.game.hasBegun && !this.data.remote) {
           console.log("Adding a local late grabbable.");
@@ -226,6 +235,9 @@
           if (launchable) {
             c.launchable = true;
             console.log("detected launchable on local late grabbable");
+          }
+          if (this.data.postRelease) {
+            c.postRelease = this.data.postRelease;
           }
           onGameStart();
           let d = {
@@ -259,7 +271,7 @@
                 document
                   .querySelector("#cam-cursor")
                   .setAttribute("material", "color: yellow");
-                release(e);
+                release();
                 setTimeout(function(e) {
                   document
                     .querySelector("#cam-cursor")
@@ -342,13 +354,20 @@
               self.originEl.getAttribute("rotation")
             ); //seems pointless, but will force the event system to notify subscribers
 
-            self.originEl.emit("grabEnd", e);
-            self.originEl.removeState("moving");
             
-            if(self.postRelease){
-              self.postRelease();
-              CS1.socket.emit("post-release", self.name);  
+            
+            if(self.data.postRelease){
+              CS1.socket.emit("post-release", self.name); 
+              CS1.callbacks[self.data.postRelease](self.name);
             }
+            
+              
+            setTimeout(e=>{
+              self.originEl.emit("grabEnd", e);
+              self.originEl.removeState("moving");
+            },500);
+            
+            
             
           }
         }
@@ -378,9 +397,7 @@
             self.originEl.getAttribute("rotation")
           ); //seems pointless, but will force the event system to notify subscribers
         }
-      },
-
-      postRelease: false
+      }
     });
   })());
 
@@ -2799,6 +2816,8 @@
       CS1.game = this;
       this.isRunning = false;
       
+      CS1.callbacks = {};
+      
       this.determineDevice();
       
       this.name = config.gameName;
@@ -4859,13 +4878,14 @@ void main() {
      CS1.scene.appendChild(sphere);
    };
    
+   CS1.callbacks['ESP8266']= name=> {
+        CS1.grabbables[name].setAttribute('rotation','0 0 0');
+     };
+   
    CS1.ui.controls.addESP8266 = e => {
      const model = document.createElement('a-gltf-model');
      model.setAttribute('src','https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?v=1557589195138');
-     model.setAttribute('grabbable','');
-     model.components.grabbable.postRelease = e => {
-        model.setAttribute('rotation','0 0 0');
-     };
+     model.setAttribute('grabbable','postRelease:ESP8266');
      model.setAttribute('scale','0.2 0.2 0.2');
      model.classList = 'esp8266';
      const pp = CS1.myPlayer.object3D.position;
@@ -5942,10 +5962,13 @@ void main() {
       ship3.appendChild(thrusterSound());
       CS1.scene.appendChild(ship3);
       
-      const gold = document.querySelector('#gold');
-      gold.components.grabbable.postRelease = e => {
+      CS1.callbacks['gold']  = e => {
         gold.setAttribute('rotation','0 0 0');
       };
+      const gold = document.querySelector('#gold');
+      gold.components.grabbable.data.postRelease = 'gold';
+        
+      
       
        
     });
