@@ -53,10 +53,13 @@ export default (()=>{
     ship3.appendChild(thrusterSound());
     CS1.scene.appendChild(ship3);
     
-    const gold = document.querySelector('#gold');
-    gold.components.grabbable.postRelease = e => {
+    CS1.callbacks['gold']  = e => {
       gold.setAttribute('rotation','0 0 0');
     }
+    const gold = document.querySelector('#gold');
+    gold.components.grabbable.data.postRelease = 'gold';
+      
+    
     
      
   });

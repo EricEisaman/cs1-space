@@ -63,13 +63,14 @@ export const controls = {
    CS1.scene.appendChild(sphere);
  }
  
+ CS1.callbacks['ESP8266']= name=> {
+      CS1.grabbables[name].setAttribute('rotation','0 0 0');
+   }
+ 
  CS1.ui.controls.addESP8266 = e => {
    const model = document.createElement('a-gltf-model');
    model.setAttribute('src','https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?v=1557589195138');
-   model.setAttribute('grabbable','');
-   model.components.grabbable.postRelease = e => {
-      model.setAttribute('rotation','0 0 0');
-   }
+   model.setAttribute('grabbable','postRelease:ESP8266');
    model.setAttribute('scale','0.2 0.2 0.2');
    model.classList = 'esp8266';
    const pp = CS1.myPlayer.object3D.position;
