@@ -290,9 +290,9 @@ export default (function grabbable() {
             CS1.callbacks[self.data.postRelease](self.name);
           }
           
+          self.originEl.emit("grabEnd", e);
             
           setTimeout(e=>{
-            self.originEl.emit("grabEnd", e);
             self.originEl.removeState("moving");
           },500);
           
