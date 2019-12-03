@@ -9,6 +9,9 @@ export const controls = {
     const m1 = document.querySelector("#menu1");
     const m = document.querySelector("#main");
     const m2 = document.querySelector("#menu2");
+    const avatar1 = config.avatar.models[0];
+    const avatar2 = config.avatar.models[1];
+    const avatar3 = config.avatar.models[2];
     CS1.ui = {};
     CS1.ui.controls = {};
 
@@ -60,7 +63,7 @@ export const controls = {
       const sphere = document.createElement("a-sphere");
       sphere.setAttribute("color", "purple");
       sphere.setAttribute("scale", "0.3 0.3 0.3");
-      sphere.setAttribute("collectible", "affects:magicDial ; value:10; threshold:1.7");
+      sphere.setAttribute("collectible", "affects:magicDial ; value:10");
       sphere.setAttribute("grabbable", "");
       sphere.classList = "magicpellet";
       const pp = CS1.myPlayer.object3D.position;
@@ -108,36 +111,6 @@ export const controls = {
 
     document.addEventListener("click", runOnce);
 
-    const m2b1 = document.querySelector("#menu2-b1");
-    if (m2b1)
-      m2b1.addEventListener("click", e => {
-        e.preventDefault();
-        box.setAttribute("material", "src:#chip");
-        CS1.socket.playerData.faceIndex = 1;
-        CS1.myPlayer._avatarType =
-          config.avatar.models[CS1.socket.playerData.faceIndex].type;
-      });
-
-    const m2b2 = document.querySelector("#menu2-b2");
-    if (m2b2)
-      m2b2.addEventListener("click", e => {
-        e.preventDefault();
-        box.setAttribute("material", "src:#mel");
-        CS1.socket.playerData.faceIndex = 2;
-        CS1.myPlayer._avatarType =
-          config.avatar.models[CS1.socket.playerData.faceIndex].type;
-      });
-
-    const m2b3 = document.querySelector("#menu2-b3");
-    if (m2b3)
-      m2b3.addEventListener("click", e => {
-        e.preventDefault();
-        box.setAttribute("material", "src:#vr1");
-        CS1.socket.playerData.faceIndex = 0;
-        CS1.myPlayer._avatarType =
-          config.avatar.models[CS1.socket.playerData.faceIndex].type;
-      });
-
     const m1b1 = document.querySelector("#menu1-b1");
     if (m1b1)
       m1b1.onclick = e => {
@@ -167,6 +140,51 @@ export const controls = {
         m.innerHTML = page4;
       };
 
+    const m2b1 = document.querySelector("#menu2-b1");
+    if (m2b1)
+      m2b1.addEventListener("click", e => {
+        e.preventDefault();
+        box.setAttribute("material", `src:${avatar1.thumbnail}`);
+        CS1.socket.playerData.faceIndex = 0;
+        CS1.myPlayer._avatarType =
+          config.avatar.models[CS1.socket.playerData.faceIndex].type;
+      });
+
+    const m2b2 = document.querySelector("#menu2-b2");
+    if (m2b2)
+      m2b2.addEventListener("click", e => {
+        e.preventDefault();
+        box.setAttribute("material", `src:${avatar2.thumbnail}`);
+        CS1.socket.playerData.faceIndex = 1;
+        CS1.myPlayer._avatarType =
+          config.avatar.models[CS1.socket.playerData.faceIndex].type;
+      });
+
+    const m2b3 = document.querySelector("#menu2-b3");
+    if (m2b3)
+      m2b3.addEventListener("click", e => {
+        e.preventDefault();
+        box.setAttribute("material", `src:${avatar3.thumbnail}`);
+        CS1.socket.playerData.faceIndex = 2;
+        CS1.myPlayer._avatarType =
+          config.avatar.models[CS1.socket.playerData.faceIndex].type;
+      });
+
+    const m2b1img = document.querySelector("#m2-b1-img");
+    const m2b1name = document.querySelector("#m2-b1-name");
+    const m2b2img = document.querySelector("#m2-b2-img");
+    const m2b2name = document.querySelector("#m2-b2-name");
+    const m2b3img = document.querySelector("#m2-b3-img");
+    const m2b3name = document.querySelector("#m2-b3-name");
+
+    m2b1img.src = avatar1.thumbnail;
+    m2b2img.src = avatar2.thumbnail;
+    m2b3img.src = avatar3.thumbnail;
+
+    m2b1name.innerHTML = avatar1.name;
+    m2b2name.innerHTML = avatar2.name;
+    m2b3name.innerHTML = avatar3.name;
+
     CS1.ui.controls.addHoverSound = b => {
       b.addEventListener("mouseenter", e => {
         if (CS1.stats.container.getAttribute("visible") && m.components.sound)
@@ -180,4 +198,3 @@ export const controls = {
       });
   }
 };
-
