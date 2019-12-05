@@ -30,7 +30,7 @@ export const controls = {
     box.setAttribute("scale", "0.7 0.7 0.7");
     box.object3D.visible = true;
     box.object3D.position.set(0, 2.3, -0.25);
-    box.setAttribute("material", "src:#chip");
+    box.setAttribute("material", `src:${avatar2.thumbnail}`);
     m2.appendChild(box);
 
     CS1.ui.controls.showBox = e => {
