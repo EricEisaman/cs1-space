@@ -28,6 +28,14 @@ function toList(collection) {
   }
   return list;
 }
+function addDot(el, position, radius, color) {
+  color = color || "red";
+  var dot = document.createElement("a-sphere");
+  dot.setAttribute("radius", radius);
+  dot.setAttribute("position", position);
+  dot.setAttribute("color", color);
+  el.appendChild(dot);
+}
 function directionLocalToWorld(object, localDirection) {
   return localDirection.transformDirection(object.matrixWorld);
 }
