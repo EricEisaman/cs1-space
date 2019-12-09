@@ -29,7 +29,7 @@
     <meta name="HandheldFriendly" content="true" />
     <link rel="stylesheet" type="text/css" href="bundle.css" />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="canonical" href="https://cs1-space.glitch.me/" />
+    <link rel="canonical" href="https://clean-start.glitch.me/" />
     <link
       rel="shortcut icon"
       href="https://cdn.glitch.com/a66c3f5c-9aba-45c0-952e-ccc59d8b0df3%2FCS1_logo_64.png?v=1564891473540"
@@ -68,7 +68,7 @@
     </div>
 
     <div id="scene-container" style="position:relative; display:none">
-      <a-scene environment="preset: arches; ground: flat; seed: -2" game>
+      <a-scene environment="preset: default; ground: flat;" game>
         <a-assets>
           <img
             id="grass"
@@ -100,7 +100,7 @@
           grabbable
           log="max:10;channel:grab"
           geometry="primitive: plane"
-          position="0 2 -9.1"
+          position="0 2 -6"
           rotation="0 0 0"
           scale="2 2 2"
           material="color: #890b0b; side:double"
@@ -109,48 +109,7 @@
         </a-entity>
 
         <!-- TEMPLATE FOR ADDING YOUR 3D MODELS  -->
-        <a-gltf-model
-          scale="0.2 0.2 0.2"
-          position="0 3.66 0"
-          rotation="0 180 0"
-          src="https://cdn.glitch.com/e0de11d2-e441-4918-b281-cf84cc97401d%2Flobby.glb?v=1574116209279"
-        >
-        </a-gltf-model>
-
-        <a-curve id="track1">
-          <a-curve-point position="15.7 31.42 -60"></a-curve-point>
-          <a-curve-point position="15.7 5.8 -26.5"></a-curve-point>
-          <a-curve-point position="15.7 0 -1.16"></a-curve-point>
-        </a-curve>
-
-        <a-curve id="track2">
-          <a-curve-point position="-15.7 31.42 -60"></a-curve-point>
-          <a-curve-point position="-15.7 5.8 -26.5"></a-curve-point>
-          <a-curve-point position="-15.7 0 -1.16"></a-curve-point>
-        </a-curve>
-
-        <a-curve id="track3">
-          <a-curve-point position="0 31.42 -60"></a-curve-point>
-          <a-curve-point position="0 30 -26.5"></a-curve-point>
-          <a-curve-point position="0 0 25"></a-curve-point>
-        </a-curve>
-
-        <a-gltf-model
-          id="max-delta"
-          alongpath="curve: #track1; dur:3000"
-          scale="0.8 0.8 0.8"
-          position="16 0 0"
-          src="https://cdn.glitch.com/e0de11d2-e441-4918-b281-cf84cc97401d%2Fmax_delta_space_ship.glb?v=1574090454042"
-        >
-        </a-gltf-model>
-
-        <a-gltf-model
-          id="gold"
-          src="https://cdn.glitch.com/21fc8213-335d-4ea0-b1cf-7b03acb5be26%2FGold_Ingots.glb?v=1574594492892"
-          grabbable
-          position="-4 0 -4"
-        >
-        </a-gltf-model>
+        <a-gltf-model scale="1 1 1" position="0 0 0" src=""> </a-gltf-model>
 
         <a-player></a-player>
 

@@ -1,6 +1,6 @@
 {
-  "gameName": "CS1 Space",
-  "welcomeMsg": "Welcome to CS1 Space Station!  Our leadership council has just arrived from the recent interstellar conference.  Please make yourself at home.",
+  "gameName": "Clean Start",
+  "welcomeMsg": "This world can be anything you dream it to be. ...  a carnival ... a haunted house .... a city ... anything ... it is all up to you.  You have the power to create.   May inspiration dwell in you forever.",
   "playerLeftMsg": "... has packed up and headed for home.",
   "theme": {
     "fontFamily": "Arial",
@@ -8,17 +8,17 @@
     "formColor": "#fff",
     "formFontColor": "white",
     "formButtonColor": "#A82F1E",
-    "overlayColor": "rgba(0,0,0, 1)",
+    "overlayColor": "rgba(0,0,0, 0.9)",
     "fontSize": 2,
-    "logo": "https://cdn.glitch.com/e0de11d2-e441-4918-b281-cf84cc97401d%2FCS1_Space_64.png?v=1574405959069"
+    "logo": "https://cdn.glitch.com/376a6bb1-e9b2-4998-af7a-cc4ea70344b8%2FCS1_Clean_logo_64.png?v=1575125604200"
   },
   "avatar": {
-  "models": [
+    "models": [
       {
         "type": 1,
         "url": "https://cdn.glitch.com/7001d18b-ab06-4934-84ee-f9bc0645e42c%2Fchip_eyes_pack.glb?1553596528401",
-        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024",
-        "name":"Chip",
+        "thumbnail": "https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fchip.png?v=1567384714024",
+        "name": "Chip",
         "scale": 0.75,
         "yOffset": 0.1,
         "animations": {
@@ -33,8 +33,8 @@
       {
         "type": 1,
         "url": "https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.glb?v=1567388543651",
-        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396",
-        "name":"Mel",
+        "thumbnail": "https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fmel.png?v=1567389128396",
+        "name": "Mel",
         "scale": 0.75,
         "yOffset": 0.1,
         "animations": {
@@ -51,8 +51,8 @@
         "url": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_head.glb?v=1566741683664",
         "lefthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_lefthand.glb?v=1566749593952",
         "righthand": "https://cdn.glitch.com/984a335f-9425-469e-8978-85c88c06d624%2Fboz_righthand.glb?v=1566749593705",
-        "thumbnail":"https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311",
-        "name":"VR-1",
+        "thumbnail": "https://cdn.glitch.com/fec96da0-7526-4b9a-aecf-3abbbe7fcdc5%2Fvr.png?v=1567383953311",
+        "name": "VR-1",
         "scale": 1,
         "yOffset": 0,
         "animations": {
@@ -81,8 +81,8 @@
     }
   },
   "bgm": {
-    "songs": [96037874],
-    "volume": 0.03,
+    "songs": [326404324],
+    "volume": 0.2,
     "playAll": true,
     "initialDelay": 5000
   },
@@ -94,4 +94,3 @@
     "welcomeDelay": 4000
   }
 }
-
