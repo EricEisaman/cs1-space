@@ -12,6 +12,21 @@ export const controls = {
     const avatar1 = config.avatar.models[0];
     const avatar2 = config.avatar.models[1];
     const avatar3 = config.avatar.models[2];
+    const hiddenDiv = document.createElement('div');
+    hiddenDiv.style.display = 'None';
+    document.body.appendChild(hiddenDiv);
+    const p1 = document.createElement('span');
+    p1.innerHTML = page1;
+    hiddenDiv.appendChild(p1);
+    const p2 = document.createElement('span');
+    p2.innerHTML = page2;
+    hiddenDiv.appendChild(p2);
+    const p3 = document.createElement('span');
+    p3.innerHTML = page3;
+    hiddenDiv.appendChild(p3);
+    const p4 = document.createElement('span');
+    p4.innerHTML = page4;
+    hiddenDiv.appendChild(p4);
     CS1.ui = {};
     CS1.ui.controls = {};
 
@@ -26,7 +41,7 @@ export const controls = {
      
     */
 
-    const box = document.createElement("a-box");
+     const box = document.createElement("a-box");
     box.setAttribute("scale", "0.7 0.7 0.7");
     box.object3D.visible = true;
     box.object3D.position.set(0, 2.3, -0.25);
@@ -100,6 +115,20 @@ export const controls = {
  |___|_||_\__,_| |_||_\___|_| \___|
      
     */
+    
+    CS1.playDMSound = true;
+    CS1.ui.controls.msgMuteToggle = e => {
+      const dmSoundControl = document.querySelector('#dm-sound-control');
+      if(dmSoundControl.innerText.includes('🔊')){
+        dmSoundControl.innerHTML='🔇';
+        CS1.playDMSound = false;
+      }else{
+        dmSoundControl.innerHTML='🔊';
+        CS1.playDMSound = true;
+      }
+      
+    }
+    
 
     function runOnce() {
       m.setAttribute(
@@ -110,7 +139,7 @@ export const controls = {
     }
 
     document.addEventListener("click", runOnce);
-
+    
     const m1b1 = document.querySelector("#menu1-b1");
     if (m1b1)
       m1b1.onclick = e => {
@@ -120,13 +149,13 @@ export const controls = {
     const m1b2 = document.querySelector("#menu1-b2");
     if (m1b2)
       m1b2.onclick = e => {
-        m.innerHTML = page2;
+        m.innerHTML = p2.innerHTML;
       };
 
     const m1b3 = document.querySelector("#menu1-b3");
     if (m1b3)
       m1b3.onclick = e => {
-        m.innerHTML = page3;
+        m.innerHTML = p3.innerHTML;
         const mbs = document.querySelectorAll(".main button ,.main.imgLink");
         if (mbs)
           mbs.forEach(b => {
@@ -137,9 +166,9 @@ export const controls = {
     const m1b4 = document.querySelector("#menu1-b4");
     if (m1b4)
       m1b4.onclick = e => {
-        m.innerHTML = page4;
+        m.innerHTML = p4.innerHTML;
       };
-
+    
     const m2b1 = document.querySelector("#menu2-b1");
     if (m2b1)
       m2b1.addEventListener("click", e => {
@@ -169,21 +198,22 @@ export const controls = {
         CS1.myPlayer._avatarType =
           config.avatar.models[CS1.socket.playerData.faceIndex].type;
       });
-
-    const m2b1img = document.querySelector("#m2-b1-img");
-    const m2b1name = document.querySelector("#m2-b1-name");
-    const m2b2img = document.querySelector("#m2-b2-img");
-    const m2b2name = document.querySelector("#m2-b2-name");
-    const m2b3img = document.querySelector("#m2-b3-img");
-    const m2b3name = document.querySelector("#m2-b3-name");
-
+    
+    const m2b1img = document.querySelector('#m2-b1-img');
+    const m2b1name = document.querySelector('#m2-b1-name');
+    const m2b2img = document.querySelector('#m2-b2-img');
+    const m2b2name = document.querySelector('#m2-b2-name');
+    const m2b3img = document.querySelector('#m2-b3-img');
+    const m2b3name = document.querySelector('#m2-b3-name');
+    
     m2b1img.src = avatar1.thumbnail;
     m2b2img.src = avatar2.thumbnail;
     m2b3img.src = avatar3.thumbnail;
-
+    
     m2b1name.innerHTML = avatar1.name;
     m2b2name.innerHTML = avatar2.name;
     m2b3name.innerHTML = avatar3.name;
+
 
     CS1.ui.controls.addHoverSound = b => {
       b.addEventListener("mouseenter", e => {
@@ -198,4 +228,3 @@ export const controls = {
       });
   }
 };
-
