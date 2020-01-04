@@ -41,7 +41,7 @@ export const controls = {
      
     */
 
-     const box = document.createElement("a-box");
+    const box = document.createElement("a-box");
     box.setAttribute("scale", "0.7 0.7 0.7");
     box.object3D.visible = true;
     box.object3D.position.set(0, 2.3, -0.25);
@@ -50,17 +50,6 @@ export const controls = {
 
     CS1.ui.controls.showBox = e => {
       box.object3D.visible = box.object3D.visible ? false : true;
-    };
-
-    CS1.ui.controls.resetShips = e => {
-      const ship = document.querySelector("#max-delta");
-      const ship2 = document.querySelector("#max-delta2");
-      const ship3 = document.querySelector("#max-delta3");
-      if (ship) {
-        ship.components.alongpath.reset();
-        ship2.components.alongpath.reset();
-        ship3.components.alongpath.reset();
-      }
     };
 
     CS1.ui.controls.addBlasterBall = e => {
@@ -78,30 +67,12 @@ export const controls = {
       const sphere = document.createElement("a-sphere");
       sphere.setAttribute("color", "purple");
       sphere.setAttribute("scale", "0.3 0.3 0.3");
-      sphere.setAttribute("collectible", "affects:magicDial ; value:10");
+      sphere.setAttribute("collectible", "affects:magicDial ; value:10; threshold:1.7");
       sphere.setAttribute("grabbable", "");
       sphere.classList = "magicpellet";
       const pp = CS1.myPlayer.object3D.position;
       sphere.object3D.position.set(pp.x, pp.y + 4, pp.z);
       CS1.scene.appendChild(sphere);
-    };
-
-    CS1.callbacks["ESP8266"] = name => {
-      CS1.grabbables[name].setAttribute("rotation", "0 0 0");
-    };
-
-    CS1.ui.controls.addESP8266 = e => {
-      const model = document.createElement("a-gltf-model");
-      model.setAttribute(
-        "src",
-        "https://cdn.glitch.com/e93942d2-015d-47d7-aae4-9f92f2a7d6b5%2FESP8266_lp.glb?v=1557589195138"
-      );
-      model.setAttribute("grabbable", "postRelease:ESP8266");
-      model.setAttribute("scale", "0.2 0.2 0.2");
-      model.classList = "esp8266";
-      const pp = CS1.myPlayer.object3D.position;
-      model.object3D.position.set(pp.x, pp.y + 4, pp.z);
-      CS1.scene.appendChild(model);
     };
 
     /* 
@@ -143,19 +114,25 @@ export const controls = {
     const m1b1 = document.querySelector("#menu1-b1");
     if (m1b1)
       m1b1.onclick = e => {
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
         CS1.__display__stats();
       };
 
     const m1b2 = document.querySelector("#menu1-b2");
     if (m1b2)
       m1b2.onclick = e => {
-        m.innerHTML = p2.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p2);
       };
 
     const m1b3 = document.querySelector("#menu1-b3");
     if (m1b3)
       m1b3.onclick = e => {
-        m.innerHTML = p3.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p3);
         const mbs = document.querySelectorAll(".main button ,.main.imgLink");
         if (mbs)
           mbs.forEach(b => {
@@ -166,7 +143,9 @@ export const controls = {
     const m1b4 = document.querySelector("#menu1-b4");
     if (m1b4)
       m1b4.onclick = e => {
-        m.innerHTML = p4.innerHTML;
+        hiddenDiv.appendChild(m.firstChild);
+        m.innerHTML = '';
+        m.appendChild(p4);
       };
     
     const m2b1 = document.querySelector("#menu2-b1");
